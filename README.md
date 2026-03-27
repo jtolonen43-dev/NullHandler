@@ -62,3 +62,51 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     return 0;
 }
+
+## Build
+
+Build as a **Windows subsystem (GUI)** executable so no console window appears.
+
+### Visual Studio
+- Create an Empty C++ Project
+- Add the source above
+- Set:
+  - Linker → System → Subsystem: **Windows**
+- Build Release
+
+### MinGW
+```bash
+gcc NullHandler.cpp -o NullHandler.exe -mwindows -s
+
+
+---
+
+## Where to place the executable
+
+Place `NullHandler.exe` in a stable location and do not move it after setting file
+associations.
+
+Recommended locations:
+
+- `C:\Program Files\NullHandler\` (system-wide)
+- `C:\Users\<you>\Programs\NullHandler\` (per-user)
+
+Do **not** place it in `C:\Windows` or `System32`.
+
+Windows file associations store the full path to the executable. If the file is moved
+later, the association will break.
+
+---
+
+## Typical use cases
+
+- Accidental “Always use this app” assignments
+- Proprietary or intermediate file formats
+- Log or data files not meant to be opened directly
+- Intentional suppression of double-click behavior
+
+---
+
+## License
+
+MIT — because doing nothing should be easy to reuse.
